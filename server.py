@@ -11,7 +11,7 @@ server.config["MYSQL_HOST"] = os.environ.get("MYSQL_HOST")
 server.config["MYSQL_USER"] = os.environ.get("MYSQL_USER")
 server.config["MYSQL_PASSWORD"] = os.environ.get("MYSQL_PASSWORD")
 server.config["MYSQL_DB"] = os.environ.get("MYSQL_DB")
-server.config["MYSQL_PORT"] = os.environ.get("MYSQL_PORT")
+server.config["MYSQL_PORT"] = int(os.environ.get("MYSQL_PORT"))
 mysql = MySQL(server)
 
 
@@ -66,7 +66,7 @@ def validate():
 
     try:
         decoded_token = jwt.decode(
-            encoded_jwt, os.environ.get("JWT_SECRET"), algorithms=['HS256']
+            parsed_token[1], os.environ.get("JWT_SECRET"), algorithms=['HS256']
         )
     except:
         return "Unauthorized", 403
