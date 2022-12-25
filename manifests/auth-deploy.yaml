@@ -21,6 +21,7 @@ spec:
       containers:
         - name: auth
           image: hmx098/auth
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
           envFrom:
